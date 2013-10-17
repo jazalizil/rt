@@ -5,7 +5,7 @@
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Thu Oct 17 19:34:34 2013 jalil dabbech
-** Last update Thu Oct 17 23:17:14 2013 jalil dabbech
+** Last update Fri Oct 18 01:54:20 2013 jalil dabbech
 */
 
 #include <stdlib.h>
@@ -36,7 +36,6 @@ t_v3D		*fill_coord(int *tab)
   coord = NULL;
   if (!(coord = malloc(sizeof(t_v3D))))
     return (NULL);
-  printf("[%p]\n", tab);
   coord->x = tab[0];
   coord->y = tab[1];
   coord->z = tab[2];
@@ -52,9 +51,9 @@ int		fill_color(t_materiau *mater, int *col, int which)
   {
     if (!(current = malloc(sizeof(t_color))))
       return (write(2, MALLOC_ERR, 21));
-    current->red = col[0] + which * 5;
-    current->green = col[1] + which * 5;
-    current->blue = col[2] + which * 5;
+    current->red = col[0] + which;
+    current->green = col[1] + which;
+    current->blue = col[2] + which;
     if (which == 0)
       mater->ambiante = *current;
     else if (which == 1)
@@ -63,7 +62,7 @@ int		fill_color(t_materiau *mater, int *col, int which)
       mater->reflexion = *current;
     else
       mater->specular = *current;
-    return (fill_color(mater, col, which++));
+    return (fill_color(mater, col, ++which));
   }
   free(col);
   return (0);

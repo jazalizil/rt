@@ -4,5 +4,5 @@
 type=sphere
 mat=metal
 origin=200 200 0 
-color=00 59 255
+color=00 59 002
 #endobj
