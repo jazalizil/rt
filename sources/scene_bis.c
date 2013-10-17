@@ -1,25 +1,28 @@
 /*
-** scene_bis.c for sources in /home/dabbec_j/projets/igraph/rt/sources
+** scene_bis.c for sources in /root/projets/igraph/rt/sources
 ** 
 ** Made by jalil dabbech
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Wed Oct 16 20:43:29 2013 jalil dabbech
-** Last update Thu Oct 17 20:42:57 2013 jalil dabbech
+** Last update Thu Oct 17 23:17:15 2013 jalil dabbech
 */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "rt.h"
 #include "my.h"
 #include "error.h"
 
 t_defmat	g_defmat[] =
 {
-  {"metal", {NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0},
+  {"metal", {NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0}}
+    /*
   {"",{}},
   {"",{}},
   {"",{}},
   {"",{}},
+  */
 };
 
 int		*parse_it(char *info, int size)
@@ -40,7 +43,7 @@ int		*parse_it(char *info, int size)
     {
       if (!(str = my_strndup(info, i, j)))
 	return (NULL);
-      k < size ? ret[k++] = atoi(str) : ;
+      k < size ? ret[k++] = atoi(str) : write(1, "", 0);
       j = i;
       free(str);
     }
@@ -59,10 +62,10 @@ int		get_mat(char *info, t_v3D *coord, t_materiau *mater)
   j = -1;
   if (!info)
     return (write(2, MALLOC_ERR, 21));
-  while (++j < 5)
-    if (!my_strcmp(info, g_defmat[j]))
+  while (++j < 1)
+    if (!my_strcmp(info, g_defmat[j].name))
     {
-      mater = g_defmat[j].materiau;
+      mater = &(g_defmat[j].materiau);
       return (0);
     }
   if (!(mat = parse_it(info, 5)))
@@ -79,9 +82,9 @@ int		get_coord(char *info, t_v3D *coord, t_materiau *mater)
 
   if (!info)
     return (write(2, MALLOC_ERR, 21));
-  if (!(coor = parse_it(info, 3)))
+  if (coor = parse_it(info, 3))
     return (write(2, MALLOC_ERR, 21));
-  if (!(coord = fill_cord(coor)))
+  if (coord = fill_coord(coor))
     return (write(2, MALLOC_ERR, 21));
   free(info);
   return (0);
@@ -89,9 +92,6 @@ int		get_coord(char *info, t_v3D *coord, t_materiau *mater)
 
 int		add_to_mater(char *info, t_v3D *coord, t_materiau *mater)
 {
-  int		i;
-  int		j;
-  int		k;
   int		*col;
 
   if (!info)

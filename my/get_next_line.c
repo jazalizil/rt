@@ -1,11 +1,11 @@
 /*
-** get_next_line.c for my in /home/dabbec_j/projets/projet_gen/my
+** get_next_line.c for my in /root/projets/igraph/rt/my
 ** 
 ** Made by jalil dabbech
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Lun avr 29 11:21:01 2013 jalil dabbech
-** Last update Tue Oct 15 21:52:03 2013 jalil dabbech
+** Last update Thu Oct 17 22:54:07 2013 jalil dabbech
 */
 
 #include <unistd.h>
@@ -14,16 +14,6 @@
 #include <sys/types.h>
 #include "get_next_line.h"
 #include "my.h"
-
-int	my_strlen(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i])
-    i ++;
-  return (i);
-}
 
 char	*my_strcpy(char *dest, const char *src)
 {

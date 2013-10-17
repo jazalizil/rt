@@ -1,11 +1,11 @@
 /*
-** my_printf.h for includes in /home/dabbec_j/projets/pushswap/includes
+** my_printf.h for includes in /root/projets/igraph/rt/includes
 ** 
 ** Made by jalil dabbech
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  mar. avril 23 17:02:03 2013 jalil dabbech
-** Last update Wed Jun 05 14:37:34 2013 jalil dabbech
+** Last update Thu Oct 17 22:15:29 2013 jalil dabbech
 */
 
 #ifndef MY_PRINTF_H_

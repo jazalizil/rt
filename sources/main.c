@@ -1,11 +1,11 @@
 /*
-** main.c for sources in /home/dabbec_j/projets/igraph/rt/sources
+** main.c for sources in /root/projets/igraph/rt/sources
 ** 
 ** Made by jalil dabbech
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Thu Jul 11 02:34:29 2013 jalil dabbech
-** Last update Thu Oct 17 19:59:42 2013 jalil dabbech
+** Last update Thu Oct 17 22:06:48 2013 jalil dabbech
 */
 
 #include <mlx.h>

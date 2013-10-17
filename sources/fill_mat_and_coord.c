@@ -1,14 +1,15 @@
 /*
-** fill_mat_and_coord.c for sources in /home/dabbec_j/projets/igraph/rt/sources
+** fill_mat_and_coord.c for sources in /root/projets/igraph/rt/sources
 ** 
 ** Made by jalil dabbech
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Thu Oct 17 19:34:34 2013 jalil dabbech
-** Last update Thu Oct 17 20:42:57 2013 jalil dabbech
+** Last update Thu Oct 17 23:17:14 2013 jalil dabbech
 */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "rt.h"
 #include "error.h"
 
@@ -25,7 +26,7 @@ t_materiau	*fill_mat(int *tab)
   mat->coef_spec = tab[3];
   mat->opac = tab[4];
   free(tab);
-  return (ret);
+  return (mat);
 }
 
 t_v3D		*fill_coord(int *tab)
@@ -35,8 +36,9 @@ t_v3D		*fill_coord(int *tab)
   coord = NULL;
   if (!(coord = malloc(sizeof(t_v3D))))
     return (NULL);
+  printf("[%p]\n", tab);
   coord->x = tab[0];
-  corrd->y = tab[1];
+  coord->y = tab[1];
   coord->z = tab[2];
   free(tab);
   return (coord);
@@ -54,13 +56,13 @@ int		fill_color(t_materiau *mater, int *col, int which)
     current->green = col[1] + which * 5;
     current->blue = col[2] + which * 5;
     if (which == 0)
-      mater->ambiante = current;
+      mater->ambiante = *current;
     else if (which == 1)
-      mater->diffuse = current;
+      mater->diffuse = *current;
     else if (which == 2)
-      mater->reflexion = current;
+      mater->reflexion = *current;
     else
-      mater->specular = current;
+      mater->specular = *current;
     return (fill_color(mater, col, which++));
   }
   free(col);

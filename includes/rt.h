@@ -5,11 +5,11 @@
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Thu Jul 11 02:35:03 2013 jalil dabbech
-** Last update Thu Oct 17 04:54:00 2013 jalil dabbech
+** Last update Thu Oct 17 23:17:17 2013 jalil dabbech
 */
 
-#ifndef RTV1_H_
-# define RTV1_H_
+#ifndef RT_H_
+# define RT_H_
 # define WINX 400
 # define WINY 400
 
@@ -74,9 +74,9 @@ typedef struct		s_materiau
 
 typedef struct		s_obj_list
 {
-  t_materiau		materiau;
+  t_materiau		*materiau;
   char			*type;
-  t_v3D			coord;
+  t_v3D			*coord;
   struct s_obj_list	*next;
 }			t_obj_list;
 
@@ -92,9 +92,13 @@ typedef struct		s_defmat
   t_materiau		materiau;
 }			t_defmat;
 
-int			get_scene(t_obj_list *, char *);
+int			get_scene(t_obj_list **, char *);
 int			get_mat(char *, t_v3D *, t_materiau *);
 int			get_coord(char *, t_v3D *, t_materiau *);
-int			add_to_mat(char *, t_v3D *, t_materiau *);
+int			add_to_mater(char *, t_v3D *, t_materiau *);
+void			epur_str(char *);
+t_materiau		*fill_mat(int *);
+t_v3D			*fill_coord(int *);
+int			fill_color(t_materiau *, int *, int);
 
-#endif /* !RTV1_H_ */
+#endif /* !RT_H_ */

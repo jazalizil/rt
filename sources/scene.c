@@ -1,11 +1,11 @@
 /*
-** scene.c for sources in /home/dabbec_j/projets/igraph/rt/sources
+** scene.c for sources in /root/projets/igraph/rt/sources
 ** 
 ** Made by jalil dabbech
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Wed Oct 16 18:45:18 2013 jalil dabbech
-** Last update Thu Oct 17 20:42:56 2013 jalil dabbech
+** Last update Thu Oct 17 23:17:15 2013 jalil dabbech
 */
 
 #include <sys/types.h>
@@ -26,9 +26,10 @@ t_scinfo	g_scinfo[] =
   {"color", &add_to_mater}
 };
 
-int		add_to_scene(t_obj_list **scene, t_v3D coord, t_materiau mater,
-    			     char *type)
+int		add_to_scene(t_obj_list **scene, t_v3D *coord,
+    			     t_materiau *mater, char *type)
 {
+  return (0);
 }
 
 int		fill_info(char *line, t_v3D *coord, t_materiau *mater,
@@ -67,7 +68,7 @@ int		get_info(int fd, t_v3D *coord, t_materiau *mater, char *type)
   while ((line = get_next_line(fd)) && my_strcmp(line, "#endobj"))
   {
     epur_str(line);
-    if (get_info(line, coord, mater, type))
+    if (fill_info(line, coord, mater, type))
       return (1);
     free(line);
   }
@@ -76,14 +77,15 @@ int		get_info(int fd, t_v3D *coord, t_materiau *mater, char *type)
 
 int		get_scene(t_obj_list **scene, char *file)
 {
-  t_v3D		coord;
-  t_materiau	mater;
+  t_v3D		*coord;
+  t_materiau	*mater;
   char		*type;
   int		fd;
   char		*line;
 
   coord = NULL;
   mater = NULL;
+  type = NULL;
   if ((fd = open(file, O_RDONLY)) < 0)
     return (write(2, OPEN_ERR, 25));
   while ((line = get_next_line(fd)))
@@ -91,9 +93,9 @@ int		get_scene(t_obj_list **scene, char *file)
     epur_str(line);
     if (!my_strcmp(line, "#startobj"))
     {
-      if (get_info(fd, &coord, &mater, type))
+      if (get_info(fd, coord, mater, type))
 	return (1);
-      if (add_to_scene(scene, &coord, &mater, type))
+      if (add_to_scene(scene, coord, mater, type))
 	return (1);
     }
     free(line);
