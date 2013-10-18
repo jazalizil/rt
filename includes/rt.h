@@ -5,13 +5,13 @@
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Thu Jul 11 02:35:03 2013 jalil dabbech
-** Last update Fri Oct 18 01:54:17 2013 jalil dabbech
+** Last update Fri Oct 18 17:01:13 2013 jalil dabbech
 */
 
 #ifndef RT_H_
 # define RT_H_
-# define WINX 400
-# define WINY 400
+# define WINX 800
+# define WINY 800
 
 typedef struct		s_color
 {

@@ -5,19 +5,28 @@
 ## Login   <dabbec_j@epitech.net>
 ## 
 ## Started on  Tue Oct 15 22:19:42 2013 jalil dabbech
-## Last update Thu Oct 17 04:10:36 2013 jalil dabbech
+## Last update Fri Oct 18 17:44:00 2013 jalil dabbech
 ##
 
 NAME	=	rt
 
-SRC	=	sources/main.c
+SRC	=	sources/main.c \
+		sources/fill_mat_and_coord.c \
+		sources/epur_str.c \
+		sources/scene.c \
+		sources/scene_bis.c
 
 OBJ	=	$(SRC:.c=.o)
 
 CC	=	gcc
 
-CFLAGS	+=	-W -Wall -Wextra -pedantic -ansi
-CFLAGS	+=	-Iincludes/ -I/usr/X11/include
+DEBUG	=	1
+
+ifeq ($(DEBUG), 1)
+  CFLAGS	+=	-W -Wall -Wextra -pedantic -ansi -Iincludes/ -I/usr/X11/include
+else
+  CFLAGS	+=	-Iincludes/ -I/usr/X11/include
+endif
 
 LIB_DIR	=	my
 
@@ -33,7 +42,7 @@ RM	=	rm -f
 
 all	:	$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME)	:	$(OBJ)
 		$(MK_LIB)
 		$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 

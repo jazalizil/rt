@@ -5,7 +5,7 @@
 ** Login   <dabbec_j@epitech.net>
 ** 
 ** Started on  Thu Jul 11 02:34:29 2013 jalil dabbech
-** Last update Fri Oct 18 01:45:34 2013 jalil dabbech
+** Last update Fri Oct 18 18:47:47 2013 jalil dabbech
 */
 
 #include <mlx.h>
@@ -56,26 +56,25 @@ void		draw_cmap(t_image cmap)
   int		x;
   int		y;
   t_v3D		rayons[WINY + WINX];
-  int		i;
+  int		color[3];
 
   cmap.data = mlx_get_data_addr(cmap.img, &(cmap.bpp), &(cmap.sizeline),
-      &(cmap.endian));
-  attrib_color(&cmap, 0xFF, 0xFF, 0xFF);
-  y = 0;
-  i = 0;
-  while (y < WINY)
+      			        &(cmap.endian));
+  y = -1;
+  while (++y < WINY)
   {
-    x = 0;
-    while (x < WINX)
+    x = -1;
+    while (++x < WINX)
     {
+      color[0] = ((y > WINY / 3 / 2 && (y % 20 == 0 || x % 20 == 0)) ? 0 : 0x8C);
+      color[1] = ((y > WINY / 3 / 2 && (y % 20 == 0 || x % 20 == 0)) ? 0xFF : 0x4F);
+      color[2] = ((y > WINY / 3 / 2 && (y % 20 == 0 || x % 20 == 0)) ? 0xFF : 0);
+      attrib_color(&cmap, color[0], color[1], color[2]);
       index = x * cmap.bpp / 8 + y * cmap.sizeline;
       cmap.data[index] = cmap.color.blue;
       cmap.data[index + 1] = cmap.color.green;
       cmap.data[index + 2] = cmap.color.red;
-      x++;
-      i++;
     }
-    y++;
   }
 }
 
@@ -93,7 +92,7 @@ int		main(int ac, char **av)
     return (1);
   param.win_ptr = mlx_new_window(param.mlx_ptr, WINX, WINY, "JazaRT");
   param.cmap.img = mlx_new_image(param.mlx_ptr, WINX, WINY);
-  draw_cmap(param.cmap);
+  draw_plan(param.cmap);
   mlx_key_hook(param.win_ptr, gere_key, (void *)&param);
   mlx_expose_hook(param.win_ptr, gere_expose, (void *)&param);
   mlx_loop(param.mlx_ptr);
